@@ -1,0 +1,1147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#c62828" />
+  <title>Book an Appointment | Babaji's Multispeciality Clinic</title>
+
+  <style>
+    :root {
+      --red: #c62828;
+      --red-dark: #a91f25;
+      --red-light: #fff0f0;
+      --ink: #242424;
+      --muted: #737373;
+      --line: #e9e9e9;
+      --surface: #ffffff;
+      --background: #f8f8f9;
+      --green: #18834a;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .topbar {
+      height: 5px;
+      background: var(--red);
+    }
+
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      width: min(100% - 36px, 920px);
+      margin: auto;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--red);
+      border-radius: 15px;
+    }
+
+    .brand-mark svg {
+      width: 27px;
+      height: 27px;
+    }
+
+    .brand-name {
+      margin: 0;
+      font-size: clamp(17px, 4vw, 22px);
+      font-weight: 750;
+      letter-spacing: -0.6px;
+      line-height: 1.25;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 5px 0 0;
+    }
+
+    main {
+      width: min(100% - 32px, 560px);
+      margin: 34px auto 48px;
+    }
+
+    .intro {
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 9px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(27px, 6vw, 35px);
+      letter-spacing: -1.1px;
+      line-height: 1.15;
+    }
+
+    .intro p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .progress-wrap {
+      margin: 0 0 20px;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .progress-label {
+      font-size: 11px;
+      font-weight: 650;
+      color: #999;
+      white-space: nowrap;
+    }
+
+    .progress-label.active,
+    .progress-label.done {
+      color: var(--red);
+    }
+
+    .progress-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .progress-segment {
+      height: 5px;
+      background: #e7e7e7;
+      border-radius: 20px;
+      transition: background 0.2s;
+    }
+
+    .progress-segment.active {
+      background: var(--red);
+    }
+
+    .booking-card {
+      background: var(--surface);
+      border: 1px solid #ededed;
+      border-radius: 23px;
+      padding: 25px;
+      box-shadow: 0 8px 35px rgba(25, 25, 25, 0.035);
+    }
+
+    .step-heading {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      margin-bottom: 23px;
+    }
+
+    .step-number {
+      width: 37px;
+      height: 37px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--red);
+      background: var(--red-light);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .step-heading h2 {
+      margin: 1px 0 5px;
+      font-size: 20px;
+      letter-spacing: -0.45px;
+    }
+
+    .step-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .service-option {
+      display: flex;
+      gap: 13px;
+      align-items: center;
+      padding: 17px 15px;
+      min-height: 90px;
+      border: 1.5px solid var(--line);
+      border-radius: 15px;
+      transition: border-color 0.18s, background 0.18s;
+      cursor: pointer;
+    }
+
+    .service-option:hover {
+      border-color: #e4a0a0;
+    }
+
+    .service-option.selected {
+      border-color: var(--red);
+      background: #fffafa;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: var(--red);
+      background: var(--red-light);
+    }
+
+    .service-icon svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .service-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .service-info strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .service-info small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .service-price {
+      font-weight: 800;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .radio-indicator {
+      width: 19px;
+      height: 19px;
+      border: 1.5px solid #c9c9c9;
+      border-radius: 50%;
+      margin-left: 3px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .service-option.selected .radio-indicator {
+      border: 6px solid var(--red);
+    }
+
+    .service-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .section-note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 16px 0 0;
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .slot-button {
+      min-height: 62px;
+      padding: 12px;
+      border: 1.5px solid var(--line);
+      border-radius: 13px;
+      background: white;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+      transition: all 0.18s;
+    }
+
+    .slot-button:hover {
+      border-color: #e4a0a0;
+    }
+
+    .slot-button.selected {
+      background: var(--red-light);
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .slot-button .slot-check {
+      display: inline-block;
+      margin-left: 5px;
+      font-size: 12px;
+    }
+
+    .field {
+      margin-bottom: 19px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 9px;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 52px;
+      border: 1.5px solid #e3e3e3;
+      border-radius: 12px;
+      padding: 13px 14px;
+      color: var(--ink);
+      outline: none;
+      background: white;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .field input::placeholder {
+      color: #aaa;
+    }
+
+    .field input:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.08);
+    }
+
+    .field input.invalid {
+      border-color: var(--red);
+    }
+
+    .field-hint {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .error-message {
+      color: var(--red);
+      font-size: 12px;
+      margin-top: 7px;
+      display: none;
+    }
+
+    .error-message.visible {
+      display: block;
+    }
+
+    .summary-box {
+      background: #fafafa;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 17px;
+      margin-bottom: 22px;
+    }
+
+    .summary-title {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 13px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #ededed;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .summary-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .summary-row span:first-child {
+      color: var(--muted);
+    }
+
+    .summary-row strong {
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .summary-total {
+      color: var(--red);
+      font-size: 17px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 11px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 13px;
+      min-height: 53px;
+      padding: 14px 19px;
+      font-weight: 750;
+      font-size: 14px;
+      transition: background 0.18s, transform 0.18s;
+    }
+
+    .btn:active {
+      transform: scale(0.985);
+    }
+
+    .btn-primary {
+      flex: 1;
+      background: var(--red);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-back {
+      min-width: 94px;
+      color: #444;
+      background: #f1f1f1;
+    }
+
+    .btn-back:hover {
+      background: #e8e8e8;
+    }
+
+    .secure-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 18px;
+      font-size: 11px;
+      color: #858585;
+    }
+
+    .secure-note svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .confirmation {
+      text-align: center;
+      padding: 10px 0 0;
+    }
+
+    .success-icon {
+      width: 76px;
+      height: 76px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #eaf7ef;
+      color: var(--green);
+      margin: 0 auto 22px;
+    }
+
+    .success-icon svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    .confirmation h2 {
+      margin: 0;
+      font-size: 27px;
+      letter-spacing: -0.8px;
+    }
+
+    .confirmation > p {
+      margin: 11px 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .confirmation .summary-box {
+      text-align: left;
+    }
+
+    .confirmation-tag {
+      display: inline-block;
+      color: var(--green);
+      background: #eaf7ef;
+      padding: 7px 12px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 17px;
+    }
+
+    .demo-notice {
+      background: #fff7e8;
+      border: 1px solid #f2dfb7;
+      color: #795b24;
+      border-radius: 11px;
+      padding: 12px 13px;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: left;
+      margin: 0 0 20px;
+    }
+
+    .site-footer {
+      text-align: center;
+      color: #999;
+      font-size: 12px;
+      padding: 0 20px 30px;
+      line-height: 1.8;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 420px) {
+      .header-inner {
+        min-height: 79px;
+        gap: 11px;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+      }
+
+      .tagline {
+        font-size: 11px;
+      }
+
+      main {
+        margin-top: 27px;
+      }
+
+      .booking-card {
+        padding: 19px 16px;
+        border-radius: 19px;
+      }
+
+      .progress-label {
+        font-size: 10px;
+      }
+
+      .service-option {
+        padding: 14px 11px;
+        gap: 10px;
+      }
+
+      .service-icon {
+        width: 39px;
+        height: 39px;
+      }
+
+      .service-price {
+        font-size: 14px;
+      }
+
+      .button-row {
+        gap: 8px;
+      }
+
+      .btn-back {
+        min-width: 78px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 4v16M4 12h16" stroke="currentColor"
+            stroke-width="3.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <p class="brand-name">Babaji's Multispeciality Clinic</p>
+        <p class="tagline">Compassionate care. Better health.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro" id="intro">
+      <div class="eyebrow">Appointment booking</div>
+      <h1>Book your visit</h1>
+      <p>Choose your service, select a convenient time, and enter your details to complete your booking.</p>
+    </div>
+
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-labels" aria-label="Booking progress">
+        <span class="progress-label active" data-label-step="1">Service</span>
+        <span class="progress-label" data-label-step="2">Time slot</span>
+        <span class="progress-label" data-label-step="3">Your details</span>
+        <span class="progress-label" data-label-step="4">Confirmation</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-segment active" data-progress-step="1"></div>
+        <div class="progress-segment" data-progress-step="2"></div>
+        <div class="progress-segment" data-progress-step="3"></div>
+        <div class="progress-segment" data-progress-step="4"></div>
+      </div>
+    </div>
+
+    <section class="booking-card" aria-live="polite">
+
+      <!-- STEP 1: SERVICE -->
+      <div class="step" id="step1">
+        <div class="step-heading">
+          <div class="step-number">01</div>
+          <div>
+            <h2>Choose a service</h2>
+            <p>What would you like to book?</p>
+          </div>
+        </div>
+
+        <div class="service-list" id="serviceList">
+
+          <label class="service-option" data-service="consultation">
+            <input type="radio" name="service" value="consultation" />
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M8 4H6a2 2 0 0 0-2 2v14h16V6a2 2 0 0 0-2-2h-2"
+                  stroke="currentColor" stroke-width="1.7"
+                  stroke-linejoin="round"/>
+                <rect x="8" y="2.5" width="8" height="4"
+                  rx="1.5" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M8 12h8M8 16h5" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="service-info">
+              <strong>General Consultation</strong>
+              <small>30 minutes · Doctor consultation</small>
+            </div>
+            <div class="service-price">₹500</div>
+            <div class="radio-indicator"></div>
+          </label>
+
+          <label class="service-option" data-service="followup">
+            <input type="radio" name="service" value="followup" />
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20 7v5h-5M4 17v-5h5"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.5 9a7 7 0 0 1 11.7-2L20 12M4 12l2.8 5a7 7 0 0 0 11.7-2"
+                  stroke="currentColor" stroke-width="1.7"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="service-info">
+              <strong>Follow-up</strong>
+              <small>15 minutes · Review visit</small>
+            </div>
+            <div class="service-price">₹300</div>
+            <div class="radio-indicator"></div>
+          </label>
+
+          <label class="service-option" data-service="checkup">
+            <input type="radio" name="service" value="checkup" />
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3.5" y="3.5" width="17" height="17"
+                  rx="3" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M7 12h3l2-4 3 8 2-4h1"
+                  stroke="currentColor" stroke-width="1.7"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="service-info">
+              <strong>Health Check-up</strong>
+              <small>45 minutes · Health assessment</small>
+            </div>
+            <div class="service-price">₹500</div>
+            <div class="radio-indicator"></div>
+          </label>
+        </div>
+
+        <p class="section-note">Select the service that best suits your needs. You can review your selection before confirming.</p>
+
+        <div class="button-row">
+          <button class="btn btn-primary" id="continue1" disabled>
+            Continue <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: TIME -->
+      <div class="step hidden" id="step2">
+        <div class="step-heading">
+          <div class="step-number">02</div>
+          <div>
+            <h2>Select a time slot</h2>
+            <p>Choose your preferred appointment time.</p>
+          </div>
+        </div>
+
+        <div class="slot-grid" id="slotGrid">
+          <button class="slot-button" type="button" data-slot="10:30 AM">10:30 AM</button>
+          <button class="slot-button" type="button" data-slot="11:30 AM">11:30 AM</button>
+          <button class="slot-button" type="button" data-slot="5:00 PM">5:00 PM</button>
+          <button class="slot-button" type="button" data-slot="6:30 PM">6:30 PM</button>
+        </div>
+
+        <p class="section-note">These are the clinic's listed appointment times. Availability is not checked against a live schedule.</p>
+
+        <div class="button-row">
+          <button class="btn btn-back" type="button" data-back="1">← Back</button>
+          <button class="btn btn-primary" id="continue2" disabled>
+            Continue <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: PATIENT DETAILS -->
+      <div class="step hidden" id="step3">
+        <div class="step-heading">
+          <div class="step-number">03</div>
+          <div>
+            <h2>Your details</h2>
+            <p>Enter your contact information for this appointment.</p>
+          </div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-title">Your selection</div>
+          <div class="summary-row">
+            <span>Service</span>
+            <strong id="previewService">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Duration</span>
+            <strong id="previewDuration">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Time slot</span>
+            <strong id="previewSlot">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Consultation fee</span>
+            <strong class="summary-total" id="previewPrice">—</strong>
+          </div>
+        </div>
+
+        <form id="bookingForm" novalidate>
+          <div class="field">
+            <label for="customerName">Full name</label>
+            <input
+              type="text"
+              id="customerName"
+              name="customerName"
+              placeholder="Enter your full name"
+              autocomplete="name"
+              maxlength="100"
+              required
+            />
+            <div class="error-message" id="nameError">Please enter your name.</div>
+          </div>
+
+          <div class="field">
+            <label for="customerPhone">Mobile number</label>
+            <input
+              type="tel"
+              id="customerPhone"
+              name="customerPhone"
+              placeholder="10-digit mobile number"
+              inputmode="numeric"
+              autocomplete="tel-national"
+              maxlength="10"
+              required
+            />
+            <div class="field-hint">Enter your 10-digit Indian mobile number.</div>
+            <div class="error-message" id="phoneError">Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.</div>
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-back" type="button" data-back="2">← Back</button>
+            <button class="btn btn-primary" type="submit">
+              Confirm booking <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="secure-note">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="5" y="10" width="14" height="11" rx="2"
+              stroke="currentColor" stroke-width="1.7"/>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"
+              stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round"/>
+          </svg>
+          Your details are used only for this demo booking.
+        </div>
+      </div>
+
+      <!-- STEP 4: CONFIRMATION -->
+      <div class="step hidden" id="step4">
+        <div class="confirmation">
+          <div class="success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="m5 12 4.5 4.5L19 7"
+                stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="confirmation-tag">✓ DEMO CONFIRMATION</div>
+          <h2>Booking confirmed!</h2>
+          <p>Thank you for choosing Babaji's Multispeciality Clinic.<br />Here is your appointment summary.</p>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-title">Appointment summary</div>
+          <div class="summary-row">
+            <span>Patient name</span>
+            <strong id="confirmName">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Mobile number</span>
+            <strong id="confirmPhone">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Service</span>
+            <strong id="confirmService">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Duration</span>
+            <strong id="confirmDuration">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Time slot</span>
+            <strong id="confirmSlot">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Consultation fee</span>
+            <strong class="summary-total" id="confirmPrice">—</strong>
+          </div>
+        </div>
+
+        <div class="demo-notice">
+          <strong>Important:</strong> This is a frontend-only demonstration. Your booking details have not been sent to the clinic or saved anywhere. Please contact the clinic to verify the actual appointment and time availability.
+        </div>
+
+        <button class="btn btn-primary" type="button" id="bookAgain" style="width:100%">
+          Book another appointment
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Babaji's Multispeciality Clinic<br />
+    Compassionate care. Better health.
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const services = {
+        consultation: {
+          name: "General Consultation",
+          duration: "30 minutes",
+          price: 500
+        },
+        followup: {
+          name: "Follow-up",
+          duration: "15 minutes",
+          price: 300
+        },
+        checkup: {
+          name: "Health Check-up",
+          duration: "45 minutes",
+          price: 500
+        }
+      };
+
+      const state = {
+        step: 1,
+        service: null,
+        slot: null,
+        name: "",
+        phone: ""
+      };
+
+      const $ = (id) => document.getElementById(id);
+
+      function formatPrice(price) {
+        return "₹" + price.toLocaleString("en-IN");
+      }
+
+      function showStep(step) {
+        state.step = step;
+
+        document.querySelectorAll(".step").forEach((element) => {
+          element.classList.add("hidden");
+        });
+
+        $("step" + step).classList.remove("hidden");
+
+        document.querySelectorAll("[data-progress-step]").forEach((segment) => {
+          const segmentStep = Number(segment.dataset.progressStep);
+          segment.classList.toggle("active", segmentStep <= step);
+        });
+
+        document.querySelectorAll("[data-label-step]").forEach((label) => {
+          const labelStep = Number(label.dataset.labelStep);
+          label.classList.toggle("active", labelStep === step);
+          label.classList.toggle("done", labelStep < step);
+        });
+
+        $("progressWrap").classList.toggle("hidden", step === 4);
+        $("intro").classList.toggle("hidden", step === 4);
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function updateServiceSelection() {
+        document.querySelectorAll(".service-option").forEach((option) => {
+          const input = option.querySelector("input");
+          option.classList.toggle("selected", input.checked);
+        });
+
+        state.service = document.querySelector(
+          'input[name="service"]:checked'
+        )?.value || null;
+
+        $("continue1").disabled = !state.service;
+      }
+
+      document.querySelectorAll('input[name="service"]').forEach((input) => {
+        input.addEventListener("change", updateServiceSelection);
+      });
+
+      $("continue1").addEventListener("click", () => {
+        if (!state.service) return;
+        showStep(2);
+      });
+
+      document.querySelectorAll("[data-slot]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.slot = button.dataset.slot;
+
+          document.querySelectorAll("[data-slot]").forEach((slotButton) => {
+            const selected = slotButton === button;
+            slotButton.classList.toggle("selected", selected);
+            slotButton.innerHTML = selected
+              ? `${slotButton.dataset.slot}<span class="slot-check" aria-hidden="true">✓</span>`
+              : slotButton.dataset.slot;
+            slotButton.setAttribute("aria-pressed", String(selected));
+          });
+
+          $("continue2").disabled = false;
+        });
+      });
+
+      function updatePreview() {
+        const service = services[state.service];
+        if (!service) return;
+
+        $("previewService").textContent = service.name;
+        $("previewDuration").textContent = service.duration;
+        $("previewSlot").textContent = state.slot || "—";
+        $("previewPrice").textContent = formatPrice(service.price);
+      }
+
+      $("continue2").addEventListener("click", () => {
+        if (!state.slot) return;
+        updatePreview();
+        showStep(3);
+      });
+
+      document.querySelectorAll("[data-back]").forEach((button) => {
+        button.addEventListener("click", () => {
+          showStep(Number(button.dataset.back));
+        });
+      });
+
+      const nameInput = $("customerName");
+      const phoneInput = $("customerPhone");
+
+      phoneInput.addEventListener("input", () => {
+        phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
+        phoneInput.classList.remove("invalid");
+        $("phoneError").classList.remove("visible");
+      });
+
+      nameInput.addEventListener("input", () => {
+        nameInput.classList.remove("invalid");
+        $("nameError").classList.remove("visible");
+      });
+
+      function validateForm() {
+        let valid = true;
+
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
+
+        if (name.length < 2) {
+          nameInput.classList.add("invalid");
+          $("nameError").textContent = "Please enter your full name.";
+          $("nameError").classList.add("visible");
+          valid = false;
+        } else {
+          nameInput.classList.remove("invalid");
+          $("nameError").classList.remove("visible");
+        }
+
+        if (!/^[6-9]\d{9}$/.test(phone)) {
+          phoneInput.classList.add("invalid");
+          $("phoneError").classList.add("visible");
+          valid = false;
+        } else {
+          phoneInput.classList.remove("invalid");
+          $("phoneError").classList.remove("visible");
+        }
+
+        if (!valid) {
+          const firstInvalid = document.querySelector(".field input.invalid");
+          firstInvalid?.focus();
+        }
+
+        return valid;
+      }
+
+      $("bookingForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!validateForm()) return;
+        if (!state.service || !state.slot) {
+          showStep(!state.service ? 1 : 2);
+          return;
+        }
+
+        state.name = nameInput.value.trim();
+        state.phone = phoneInput.value.trim();
+
+        const service = services[state.service];
+
+        $("confirmName").textContent = state.name;
+        $("confirmPhone").textContent = state.phone;
+        $("confirmService").textContent = service.name;
+        $("confirmDuration").textContent = service.duration;
+        $("confirmSlot").textContent = state.slot;
+        $("confirmPrice").textContent = formatPrice(service.price);
+
+        showStep(4);
+      });
+
+      $("bookAgain").addEventListener("click", () => {
+        state.service = null;
+        state.slot = null;
+        state.name = "";
+        state.phone = "";
+
+        document.querySelectorAll('input[name="service"]').forEach((input) => {
+          input.checked = false;
+        });
+
+        document.querySelectorAll(".service-option").forEach((option) => {
+          option.classList.remove("selected");
+        });
+
+        document.querySelectorAll("[data-slot]").forEach((button) => {
+          button.classList.remove("selected");
+          button.textContent = button.dataset.slot;
+          button.setAttribute("aria-pressed", "false");
+        });
+
+        $("continue1").disabled = true;
+        $("continue2").disabled = true;
+        $("bookingForm").reset();
+
+        showStep(1);
+      });
+
+      showStep(1);
+    })();
+  </script>
+</body>
+</html>
